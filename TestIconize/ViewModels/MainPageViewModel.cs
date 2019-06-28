@@ -13,8 +13,8 @@ namespace TestIconize.ViewModels
      * play -> pause | play -> pause
      */
     private const string PlayIconInitial = "fas-play";
-    private const string PauseIconToReplace = "pause";
-    private const string PlayIconToReplace = "play";
+    private readonly string PauseIconToReplace = isOS ? "pause" : "fas-pause";
+    private readonly string PlayIconToReplace = isOS ? "play" : "fas-play";
     private string _icon;
     
     public MainPageViewModel()
@@ -34,5 +34,7 @@ namespace TestIconize.ViewModels
       get => _icon;
       set => SetProperty(ref _icon, value);
     }
+
+    private static bool isOS => Device.RuntimePlatform == Device.iOS;
   }
 }
